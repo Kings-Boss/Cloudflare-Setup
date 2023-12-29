@@ -6,7 +6,7 @@ export async function addUser(update) {
     userId: update.message.chat.id,
     firstName: update.message.chat.firstName,
     lastName: update.message.chat.lastName,
-    username: update.message.from.username || '',  // Handle optional username
+    username: update.message.from.username,
     isBot: update.message.from.isBot
   };
 
