@@ -51,32 +51,3 @@ async function processUpdate(update) {
     await handleCallbackQuery(update)
   }
 }
-
-async function addUser(update) {
-  const userInfo = {
-    Name: "",
-    firstName: update.message.from.firstName,
-    userId: update.message.from.id,
-    lastName: update.message.from.lastName,
-    username: update.message.from.username || '',  // Handle optional username
-    isBot: update.message.from.isBot,
-    languageCode: update.message.from.languageCode,
-  };
-
-  const Allusers = await getKV("AllUsers");
-  let userIndex = Allusers.length;
-
-  if (!userInfo.firstName && userInfo.lastName) {
-    userInfo.Name = userInfo.lastName
-  } else if (!userInfo.lastName && userInfo.firstName) {
-    userInfo.Name = userInfo.firstName
-  } else if (!userInfo.firstName && !userInfo.lastName) {
-    userInfo.Name = `User${userIndex}`;
-  }
-
-  if (!Allusers.some(user => user.userId === userInfo.userId)) {
-    Allusers.push(userInfo);
-  }
-  // @ts-ignore
-  await KV.put("AllUsers", JSON.stringify(Allusers));
-}
