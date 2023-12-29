@@ -1,0 +1,28 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - bot1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Wrangler
+        run: npm install -g @cloudflare/wrangler
+
+      - name: Authenticate with Cloudflare
+        uses: actions/setup-node@v3
+        with:
+          registry-url: https://registry.npmjs.org/
+          node-version: 16
+      
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@2.4.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: src
