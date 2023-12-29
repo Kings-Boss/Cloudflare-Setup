@@ -4,6 +4,7 @@ import { masterCommands } from "./masterCommands";
 import { handleCallbackQuery } from "./handleCallbackQuery.js";
 import { handleMasterReply } from "./handleMasterReply.js";
 import { getKV } from "./getFun.js";
+import { addUser } from "./addUser.js";
 
 var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
 var webhookEndpoint = "/endpoint";
