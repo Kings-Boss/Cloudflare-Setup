@@ -1,4 +1,7 @@
-async function addUser(update) {
+
+import { getKV } from "./getFun.js";
+
+export async function addUser(update) {
   const userInfo = {
     userId: update.message.chat.id,
     firstName: update.message.chat.firstName,
