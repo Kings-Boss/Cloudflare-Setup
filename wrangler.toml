@@ -1,0 +1,8 @@
+name = "contact-bot"
+main = "src/index.js"
+compatibility_date = "2023-12-23"
+workers_dev = true
+
+[[kv_namespaces]]
+id = "3edc0db428564c60801968eec5637d53"
+binding = "KV"
