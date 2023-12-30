@@ -38,7 +38,7 @@ export async function getUserInfo(targetUserId) {
         userInfo += "*UserId :* `" + user.userId + "`\n";
         userInfo += "*FirstName :* " + (user.firstName || "") + "\n";
         userInfo += "*LastName :* " + (user.lastName || "") + "\n";
-        if (user.Name) {
+        if (user.username) {
           userInfo += "*UserName :* " + user.username + "\n";
         } else {
           userInfo += "*UserName :* " + "undefined" + "\n";
