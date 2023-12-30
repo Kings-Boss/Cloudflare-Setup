@@ -38,7 +38,8 @@ async function handleIncomingRequest(event) {
 async function processUpdate(update) {
   if ("message" in update) {
     const userId = update.message.from.id;
-    const isMaster = (userId === 1818824488);
+    const masters = await getKV("masters");
+    const isMaster = (masters.includes(userId));
     await addUser(update);
 
     if (isMaster) {
