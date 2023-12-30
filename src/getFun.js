@@ -1,6 +1,5 @@
 
 export async function getKV(keyname) {
-    // @ts-ignore
     const valueString = await KV.get(keyname);
     const valueJSON = JSON.parse(valueString)
     return valueJSON 
@@ -25,3 +24,23 @@ export async function getIdFromMsg(replyText ,regex) {
       return ID
     }
   }
+
+
+export async function getUserInfo(targetUserId) {
+    let userInfo = "";
+    const data = await getKV("AllUsers");
+
+    for (const user of data) {
+      if (user.userId === targetUserId) {
+        if (user.Name) {
+            userInfo += "*Name:* " + (user.Name) + "\n";
+        }
+        userInfo += "*UserId:* `" + (user.userId) + "`\n";
+        userInfo += "*firstName:* " + (user.firstName || "") + "\n";
+        userInfo += "*lastName:* " + (user.lastName || "") + "\n";
+        userInfo += "*username:* @" + (user.username || " undefined") + "\n";
+        break;
+      }
+    }
+    return userInfo
+}
