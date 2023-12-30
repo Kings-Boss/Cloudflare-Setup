@@ -33,12 +33,12 @@ export async function getUserInfo(targetUserId) {
     for (const user of data) {
       if (user.userId === targetUserId) {
         if (user.Name) {
-            userInfo += "*Name:* " + (user.Name) + "\n";
+            userInfo += "*Name:* " + user.Name + "\n";
         }
-        userInfo += "*UserId:* `" + (user.userId) + "`\n";
+        userInfo += "*UserId:* `" + user.userId + "`\n";
         userInfo += "*firstName:* " + (user.firstName || "") + "\n";
         userInfo += "*lastName:* " + (user.lastName || "") + "\n";
-        userInfo += "*username:* @" + (user.username || " undefined") + "\n";
+        userInfo += "*username:* " + (user.username ? "@" + user.username : "undefined") + "\n";
         break;
       }
     }
