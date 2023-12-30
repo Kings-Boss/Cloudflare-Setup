@@ -1,7 +1,7 @@
 
 import { sendMessage, copyMessage, replyMessage, buildInlineKeyboard } from "./message";
 import { BanUser, UnbanUser } from "./banCmds";
-import { getUserId, getIdFromMsg } from "./getFun.js";
+import { getUserId, getIdFromMsg, getUserInfo } from "./getFun.js";
 var masterChatId;
 
 export async function handleMasterReply(update) {
@@ -25,6 +25,10 @@ export async function handleMasterReply(update) {
           const userId = await getUserId(repliedMessage);
           if (replyText === "/id"){
             await sendMessage(masterChatId, `<b>UserID :</b> <code>${userId}</code>`, "HTML");
+
+          } else if (replyText === "/info") {
+              const userInfo = await getUserInfo(userId);
+              await sendMessage(masterChatId, userInfo);
 
           } else if (replyText === "/ban") {
               await BanUser(userId, replymessageId);
