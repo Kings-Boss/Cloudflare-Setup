@@ -31,16 +31,15 @@ export async function getUserInfo(targetUserId) {
     for (const user of data) {
       if (user.userId === targetUserId) {
         const userInfo = [
-          user.Name ? `*Name :* ${user.Name}\n` : "",
+            user.Name ? `*Name :* ${user.Name}\n` : "",
           `*UserId :* \`${user.userId}\``,
-          `*FirstName :* ${user.firstName?. || ""}`,
-          `*LastName :* ${user.lastName?. || ""}`,
+          `*FirstName :* ${user.firstName?.("" || "")}`,
+          `*LastName :* ${user.lastName?.("" || "")}`,
           user.username ? `*UserName :* @${user.username}\n` : `*UserName :* undefined\n`,
           "*isBot :* False\n",
         ].join("\n");
         return userInfo;
       }
     }
-  
     return "User not found";
   }
