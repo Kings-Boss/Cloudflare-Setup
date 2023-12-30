@@ -4,8 +4,8 @@ import { getKV } from "./getFun.js";
 export async function addUser(update) {
   const userInfo = {
       userId: update.message.from.id,
-      firstName: update.message.from.firstName,
-      lastName: update.message.from.lastName,
+      firstName: update.message.from.first_name,
+      lastName: update.message.from.last_name,
       username: update.message.from.username
     };
 
