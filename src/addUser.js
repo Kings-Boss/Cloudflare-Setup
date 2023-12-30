@@ -3,12 +3,12 @@ import { getKV } from "./getFun.js";
 
 export async function addUser(update) {
   const userInfo = {
-    userId: update.message.chat.id,
-    firstName: update.message.chat.firstName,
-    lastName: update.message.chat.lastName,
-    username: update.message.from.username,
-    isBot: update.message.from.isBot
-  };
+      userId: update.message.from.id,
+      firstName: update.message.from.firstName,
+      lastName: update.message.from.lastName,
+      username: update.message.from.username,
+      isBot: update.message.from.is_bot
+    };
 
   const Allusers = await getKV("AllUsers");
   let userIndex = Allusers.length;
