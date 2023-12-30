@@ -27,7 +27,7 @@ export async function handleMasterReply(update) {
             await sendMessage(masterChatId, `<b>UserID :</b> <code>${userId}</code>`, "HTML");
 
           } else if (replyText === "/info") {
-              const userInfo = await getUserInfo(userId);
+              const userInfo = await getUserInfo(Number(userId));
               await sendMessage(masterChatId, userInfo);
 
           } else if (replyText === "/ban") {
