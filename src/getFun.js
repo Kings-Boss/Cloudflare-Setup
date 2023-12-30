@@ -39,7 +39,7 @@ export async function getUserInfo(targetUserId) {
         userInfo += "*FirstName :* " + (user.firstName || "") + "\n";
         userInfo += "*LastName :* " + (user.lastName || "") + "\n";
         if (user.username) {
-          userInfo += "*UserName :* " + user.username + "\n";
+          userInfo += `*UserName :* @${user.username}` + "\n";
         } else {
           userInfo += "*UserName :* " + "undefined" + "\n";
         }
