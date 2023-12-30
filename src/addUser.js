@@ -11,7 +11,10 @@ export async function addUser(update) {
 
   const Allusers = await getKV("AllUsers");
   let userIndex = Allusers.length;
-
+  
+  if (!userInfo.lastName && userInfo.firstName === "­­­­­­­­") {
+    userInfo.Name = `User${userIndex}`;
+  }
   if (!userInfo.firstName && !userInfo.lastName) {
     userInfo.Name = `User${userIndex}`;
   }
