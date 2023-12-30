@@ -6,8 +6,7 @@ export async function addUser(update) {
       userId: update.message.from.id,
       firstName: update.message.from.firstName,
       lastName: update.message.from.lastName,
-      username: update.message.from.username,
-      isBot: update.message.from.is_bot
+      username: update.message.from.username
     };
 
   const Allusers = await getKV("AllUsers");
