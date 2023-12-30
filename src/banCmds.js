@@ -51,9 +51,8 @@ export async function Unbanlist(userId) {
       await sendMessage(userId, `*YOU HAVE BEEN UNBANNED*`);
     }
   }
-  
+
 export async function isBanned(userId) {
-    const bannedUsersString = await KV.get("BannedUsers");
-    const bannedUsers = JSON.parse(bannedUsersString)
+    const bannedUsers = await getKV("BannedUsers");
     return (bannedUsers.includes(userId))
   }
