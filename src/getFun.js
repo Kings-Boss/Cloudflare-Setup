@@ -10,8 +10,11 @@ export async function getUserId(repliedMessage) {
         for (const button of row) {
           if (button.text === "UserInfo") {
             const callbackData = button.callback_data;
-            const [, userId,] = callbackData.split('_');
-            return userId
+            const match = callbackData.match(/UserId :\s*`(\d+)`/);
+            if (match) {
+              const userId = match[1];
+              return userId
+            }
           }
         }
       }
@@ -30,16 +33,8 @@ export async function getUserInfo(repliedMessage) {
     for (const button of row) {
       if (button.text === "UserInfo") {
         const callbackData = button.callback_data;
-        const [, userId, messageId, firstName, lastName, username] = callbackData.split('_');
-        const userInfo = [
-          `*UserId :* \`${userId}\``,
-          `*FirstName :* ${firstName}`,
-          `*LastName :* ${lastName}`,
-          `*UserName :* ${username}`,
-          "*isBot :* False\n",
-        ].join("\n");
-        return userInfo;
+        return callbackData
+        }
       }
     }
   }
-}

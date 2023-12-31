@@ -8,7 +8,7 @@ export async function handleUser(update) {
     const userId = update.message.from.id;
     const firstName = update.message.from.first_name || "";
     const lastName = update.message.from.last_name || "";
-    const username = update.message.from.username || "undefined";
+    const username = update.message.from.username  ? `@${update.message.from.username}` : "undefined";;
     const userText = update.message.text;
     const messageId = update.message.message_id;
     const Banned = await isBanned(userId.toString());
@@ -18,17 +18,24 @@ export async function handleUser(update) {
         if (userText === "/start") {
         await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
         } else {
-        const inlineKeyboard = buildInlineKeyboard(
-            "UserInfo",
-            `userinfo_${userId}_${messageId}_${firstName}_${lastName}_${username}`,
-            [
-            {
-                text: "Profile",
-                url: `tg://user?id=${userId}`,
-            },
-            ]
-        );                  
-        await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
+            const userInfo = [
+                `*UserId :* \`${userId}\``,
+                `*FirstName :* ${firstName}`,
+                `*LastName :* ${lastName}`,
+                `*UserName :* ${username}`,
+                "*isBot :* False\n",
+              ].join("\n");
+            const inlineKeyboard = buildInlineKeyboard(
+                "UserInfo",
+                userInfo,
+                [
+                    {
+                        text: "Profile",
+                        url: `tg://user?id=${userId}`,
+                    },
+                ]
+                );                  
+            await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
         }
     } else {
         await deleteMessage(chatId, messageId);
