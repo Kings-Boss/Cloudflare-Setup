@@ -30,7 +30,8 @@ export async function getUserInfo(repliedMessage) {
     for (const button of row) {
       if (button.text === "UserInfo") {
         const callbackData = button.callback_data;
-        const [, userId, messageId, firstName, lastName, username] = callbackData.split('_');
+        const [, user] = callbackData.split('_');
+        const [userId, firstName, lastName, username] = JSON.parse(user)
         const userInfo = [
           `*UserId :* \`${userId}\``,
           `*FirstName :* ${firstName}`,
