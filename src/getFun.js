@@ -25,21 +25,21 @@ export async function getIdFromMsg(replyText ,regex) {
     }
   }
 
-export async function getUserInfo(targetUserId) {
-    const data = await getKV("AllUsers");
-  
-    for (const user of data) {
-      if (user.userId === targetUserId) {
+export async function getUserInfo(repliedMessage) {
+  for (const row of repliedMessage.reply_markup.inline_keyboard) {
+    for (const button of row) {
+      if (button.text === "UserInfo") {
+        const callbackData = button.callback_data;
+        const [, userId, messageId, firstName, lastName, username] = callbackData.split('_');
         const userInfo = [
-            user.Name ? `*Name :* ${user.Name}\n` : "",
-          `*UserId :* \`${user.userId}\``,
-          `*FirstName :* ${user.firstName?.("" || "")}`,
-          `*LastName :* ${user.lastName?.("" || "")}`,
-          user.username ? `*UserName :* @${user.username}\n` : `*UserName :* undefined\n`,
+          `*UserId :* \`${userId}\``,
+          `*FirstName :* ${firstName}`,
+          `*LastName :* ${lastName}`,
+          `*UserName :* ${username}`,
           "*isBot :* False\n",
         ].join("\n");
         return userInfo;
       }
     }
-    return "User not found";
   }
+}

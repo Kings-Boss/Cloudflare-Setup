@@ -24,11 +24,11 @@ export async function handleMasterReply(update) {
       } else if ("reply_markup" in repliedMessage && "inline_keyboard" in repliedMessage.reply_markup) {
           const userId = await getUserId(repliedMessage);
           if (replyText === "/id"){
-            await sendMessage(masterChatId, `<b>UserID :</b> <code>${userId}</code>`, "HTML");
+            await replyMessage(masterChatId, replymessageId, `<b>UserID :</b> <code>${userId}</code>`, "HTML");
 
           } else if (replyText === "/info") {
-              const userInfo = await getUserInfo(Number(userId));
-              await sendMessage(masterChatId, userInfo);
+              const userInfo = await getUserInfo(repliedMessage);
+              await replyMessage(masterChatId, replymessageId, userInfo);
 
           } else if (replyText === "/ban") {
               await BanUser(userId, replymessageId);
