@@ -10,14 +10,15 @@ export async function getUserId(repliedMessage) {
         for (const button of row) {
           if (button.text === "UserInfo") {
             const callbackData = button.callback_data;
-            const match = callbackData.match(/UserId :\s*`(\d+)`/);
-            if (match) {
-              const userId = match[1];
+            const lines = callbackData.split("\n");
+            const userIdLine = lines.find(line => line.startsWith("UserId :"));
+            if (userIdLine) {
+              const userId = userIdLine.slice("UserId : ".length).trim();
               return userId
             }
           }
         }
-      }
+    }
   }
   
 export async function getIdFromMsg(replyText ,regex) {

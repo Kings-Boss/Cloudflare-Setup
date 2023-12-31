@@ -19,11 +19,11 @@ export async function handleUser(update) {
         await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
         } else {
             const userInfo = [
-                `*UserId :* \`${userId}\``,
-                `*FirstName :* ${firstName}`,
-                `*LastName :* ${lastName}`,
-                `*UserName :* ${username}`,
-                "*isBot :* False\n",
+                `UserId : ${userId}`,
+                `FirstName : ${firstName}`,
+                `LastName : ${lastName}`,
+                `UserName : ${username}`,
+                "isBot : False\n",
               ].join("\n");
             const inlineKeyboard = buildInlineKeyboard(
                 "UserInfo",
