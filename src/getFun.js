@@ -10,7 +10,7 @@ export async function getUserId(repliedMessage) {
         for (const button of row) {
           if (button.text === "UserInfo") {
             const callbackData = button.callback_data;
-            const [, userId,] = callbackData.split('_<m>_');
+            const [, userId,] = callbackData.split('_');
             return userId
           }
         }
