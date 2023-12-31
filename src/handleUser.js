@@ -23,7 +23,7 @@ export async function handleUser(update) {
                 `FirstName : ${firstName}`,
                 `LastName : ${lastName}`,
                 `UserName : ${username}`,
-                "isBot : False\n",
+                "isBot : False",
               ].join("\n");
             const inlineKeyboard = buildInlineKeyboard(
                 "UserInfo",
