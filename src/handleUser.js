@@ -8,7 +8,7 @@ export async function handleUser(update) {
     const userId = update.message.from.id;
     const firstName = update.message.from.first_name || "";
     const lastName = update.message.from.last_name || "";
-    const username = update.message.from.username  ? `@${update.message.from.username}` : "undefined";;
+    const username = update.message.from.username  ? `@${update.message.from.username}` : "undefined";
     const userText = update.message.text;
     const messageId = update.message.message_id;
     const Banned = await isBanned(userId.toString());
