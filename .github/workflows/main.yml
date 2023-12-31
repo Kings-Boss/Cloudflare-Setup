@@ -1,9 +1,8 @@
 name: Deploy to Cloudflare Workers
 
 on:
-  push:
-    branches:
-      - bot1
+    push:
+    workflow_dispatch:
 
 jobs:
   deploy:
