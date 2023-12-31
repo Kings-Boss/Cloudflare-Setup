@@ -18,7 +18,7 @@ export async function handleMasterReply(update) {
         const response = await copyMessage(masterChatId, replymessageId, ID);
         const inlineKeyboard = buildInlineKeyboard(
           "Delete Message", 
-          `delete_<m>_${ID}_<m>_${response.result.message_id}`,[]);
+          `delete_${ID}_${response.result.message_id}`,[]);
           
         await replyMessage(masterChatId, replymessageId, `*MESSAGE #SENT SUCCESSFULLY*`, inlineKeyboard);
   

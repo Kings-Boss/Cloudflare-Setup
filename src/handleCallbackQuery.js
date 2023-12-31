@@ -6,7 +6,7 @@ var masterChatId;
 export async function handleCallbackQuery(update) {
     masterChatId = await KV.get("masterChatId");
     const callbackData = update.callback_query.data;
-    const parts = callbackData.split('_<m>_');
+    const parts = callbackData.split('_');
 
     if (parts[0] === "userinfo") {
       const popupText = `User ID: ${parts[1]}\nMessage ID: ${parts[2]}`;
