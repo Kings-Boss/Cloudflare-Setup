@@ -10,7 +10,7 @@ export async function getUserId(repliedMessage) {
         for (const button of row) {
           if (button.text === "UserInfo") {
             const callbackData = button.callback_data;
-            const [, userId,] = callbackData.split('_');
+            const [, userId,] = callbackData.split('_<m>_');
             return userId
           }
         }
@@ -30,8 +30,7 @@ export async function getUserInfo(repliedMessage) {
     for (const button of row) {
       if (button.text === "UserInfo") {
         const callbackData = button.callback_data;
-        const [, id, messageId, user] = callbackData.split('_');
-        const [userId, firstName, lastName, username] = JSON.parse(user);
+        const [userId, messageId, firstName, lastName, username] = callbackData.split('_<m>_');
         const userInfo = [
           `*UserId :* \`${userId}\``,
           `*FirstName :* ${firstName}`,

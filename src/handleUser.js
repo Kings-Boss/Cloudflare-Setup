@@ -20,7 +20,7 @@ export async function handleUser(update) {
         } else {
         const inlineKeyboard = buildInlineKeyboard(
             "UserInfo",
-            `userinfo_${userId}_${messageId}_[${userId},${firstName},${lastName},${username}]`,
+            `userinfo_<m>_${userId}_<m>_${messageId}_<m>_${firstName}_<m>_${lastName}_<m>_${username}`,
             [
             {
                 text: "Profile",
