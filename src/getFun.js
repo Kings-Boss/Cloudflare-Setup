@@ -30,14 +30,15 @@ export async function getIdFromMsg(replyText ,regex) {
 export async function getUserInfo(userId) {
   const data = await getdb(`users/${userId}`);
   let userInfo = "";
+  let username = "undefined";
   if (data.username) {
-    data.username = `@${data.username}`;
+    username = `@${data.username}`;
   }
   userInfo += "*UserId:* `" + data.id + "`\n";
   userInfo += "*FirstName :* " + (data.first_name || "") + "\n";
   userInfo += "*LastName :* " + (data.last_name || "") + "\n";
-  userInfo += "*UserName :* " + (data.username) + "\n";
-  userInfo += "*isBot :* " + (data.is_bot) + "\n";
+  userInfo += "*UserName :* " + username + "\n";
+  userInfo += "*isBot :* " + data.is_bot + "\n";
   userInfo += "*isBanned? :* " + (data.banned || "false") + "\n";
   
   return userInfo;
