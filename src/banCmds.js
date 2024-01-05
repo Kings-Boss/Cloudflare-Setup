@@ -24,7 +24,7 @@ export async function BanUser(userId, replymessageId) {
       const bannedUsers = await getKV("BannedUsers");
       bannedUsers.push(userId)
       await KV.put("BannedUsers", JSON.stringify(bannedUsers));
-      await putdb(`users/${userId}/banned`, "true");
+      await putdb(`users/${userId}/banned`, true);
       await sendMessage(userId, `*YOU HAVE BEEN BANNED*`);
       await replyMessage(masterChatId, replymessageId, BanMsg, BanKeyboard);
     } else {
@@ -38,7 +38,7 @@ export async function UnbanUser(userId, replymessageId) {
     const USER = `[THIS USER](tg://user?id=${userId})`
     if (Banned) {
       await Unbanlist(userId);
-      await putdb(`users/${userId}/banned`, "false");
+      await putdb(`users/${userId}/banned`, false);
       await replyMessage(masterChatId, replymessageId, `${USER} *IS #UNBANNED NOW*`);      
     } else {
       await replyMessage(masterChatId, replymessageId,`${USER} *WAS NEVER BANNED*`);   
@@ -51,7 +51,7 @@ export async function Unbanlist(userId) {
     if (Banned) {
       const newList = bannedUsers.filter(item => item !== userId);
       await KV.put("BannedUsers", JSON.stringify(newList));
-      await putdb(`users/${userId}/banned`, "false");
+      await putdb(`users/${userId}/banned`, false);
       await sendMessage(userId, `*YOU HAVE BEEN UNBANNED*`);
     }
   }
