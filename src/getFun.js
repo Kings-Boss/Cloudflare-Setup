@@ -37,7 +37,7 @@ export async function getUserInfo(userId) {
   userInfo += "*UserId:* `" + data.id + "`\n";
   userInfo += "*FirstName :* " + (data.first_name || "") + "\n";
   userInfo += "*LastName :* " + (data.last_name || "") + "\n";
-  userInfo += "*UserName :* " + (data.username || "undefined") + "\n";
+  // userInfo += "*UserName :* " + (data.username || "undefined") + "\n";
   userInfo += "*isBot :* " + data.is_bot + "\n";
   userInfo += "*isBanned? :* " + (data.banned || "false") + "\n";
   
