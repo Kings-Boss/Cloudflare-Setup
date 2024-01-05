@@ -1,4 +1,6 @@
 
+import { getdb } from "./database";
+
 export async function getKV(keyname) {
     const valueString = await KV.get(keyname);
     const valueJSON = JSON.parse(valueString)
@@ -10,15 +12,11 @@ export async function getUserId(repliedMessage) {
         for (const button of row) {
           if (button.text === "UserInfo") {
             const callbackData = button.callback_data;
-            const lines = callbackData.split("\n");
-            const userIdLine = lines.find(line => line.startsWith("UserId :"));
-            if (userIdLine) {
-              const userId = userIdLine.slice("UserId : ".length).trim();
-              return userId
-            }
+            const [, userId,] = callbackData.split('_');
+            return userId
           }
         }
-    }
+      }
   }
   
 export async function getIdFromMsg(replyText ,regex) {
@@ -29,13 +27,18 @@ export async function getIdFromMsg(replyText ,regex) {
     }
   }
 
-export async function getUserInfo(repliedMessage) {
-  for (const row of repliedMessage.reply_markup.inline_keyboard) {
-    for (const button of row) {
-      if (button.text === "UserInfo") {
-        const callbackData = button.callback_data;
-        return callbackData
-        }
-      }
-    }
+export async function getUserInfo(userId) {
+  const data = await getdb(`users/${userId}`);
+  let userInfo = "";
+  if (data.username) {
+    data.username = `@${data.username}`;
+  }
+  userInfo += "*UserId:* `" + data.id + "`\n";
+  userInfo += "*FirstName :* " + (data.first_name || "") + "\n";
+  userInfo += "*LastName :* " + (data.last_name || "") + "\n";
+  userInfo += "*UserName :* " + (data.username) + "\n";
+  userInfo += "*isBot :* " + (data.is_bot) + "\n";
+  userInfo += "*isBanned? :* " + (data.banned || "false") + "\n";
+  
+  return userInfo;
   }

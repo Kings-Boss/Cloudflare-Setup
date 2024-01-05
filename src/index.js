@@ -4,7 +4,7 @@ import { masterCommands } from "./masterCommands";
 import { handleCallbackQuery } from "./handleCallbackQuery.js";
 import { handleMasterReply } from "./handleMasterReply.js";
 import { getKV } from "./getFun.js";
-import { addUser } from "./addUser.js";
+import { putdb } from "./database.js";
 
 var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
 var webhookEndpoint = "/endpoint";
@@ -40,7 +40,7 @@ async function processUpdate(update) {
     const userId = update.message.from.id;
     const masters = await getKV("masters");
     const isMaster = (masters.includes(userId));
-    await addUser(update);
+    await putdb(`users/${userId}`, update.message.from);
 
     if (isMaster) {
       await KV.put("masterChatId", userId);

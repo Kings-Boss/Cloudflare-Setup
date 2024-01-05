@@ -29,7 +29,7 @@ export async function handleMasterReply(update) {
             await deleteMessage(masterChatId, messageId);
 
           } else if (replyText === "/info") {
-              const userInfo = await getUserInfo(repliedMessage);
+              const userInfo = await getUserInfo(userId);
               await replyMessage(masterChatId, replymessageId, userInfo);
               await deleteMessage(masterChatId, messageId);
 
