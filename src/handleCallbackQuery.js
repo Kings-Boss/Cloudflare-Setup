@@ -1,6 +1,7 @@
 
-import { editMessageText, deleteMessage, answerCallbackQuery } from "./message";
+import { sendMessage, editMessageText, deleteMessage, answerCallbackQuery } from "./message";
 import { Unbanlist } from "./banCmds";
+import { isSub } from "./fsub.js";
 var masterChatId;
 
 export async function handleCallbackQuery(update) {
@@ -20,5 +21,15 @@ export async function handleCallbackQuery(update) {
       await Unbanlist(parts[1]);
       await editMessageText(masterChatId, update.callback_query.message.message_id , `[THIS USER](tg://user?id=${parts[1]}) *IS #UNBANNED NOW*`)
 
+    } else if (parts[0] === "check") {
+      const Fsub = await isSub(parts[1]);
+      if (Fsub) {
+        const Text = `*THANKS FOR JOINING THE CHANNEL 😊* \n*NOW YOU CAN FEEL FREE TO USE ME*`;
+        await deleteMessage(parts[1], update.callback_query.message.message_id);
+        await sendMessage(parts[1], Text);
+      } else {
+        const popupText = `YOU HAVEN'T JOINED \nDON'T TRY TO BE OVERSMART 😑`;
+        await answerCallbackQuery(update.callback_query.id, popupText);
+      }
     }
   }
