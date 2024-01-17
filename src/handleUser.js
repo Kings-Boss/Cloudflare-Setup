@@ -33,8 +33,6 @@ export async function handleUser(update) {
                         );                  
                     await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
                 }
-          } else {
-            await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*");
           }
 
     } else {
