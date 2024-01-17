@@ -11,7 +11,7 @@ export async function handleUser(update) {
     const messageId = update.message.message_id;
     const channel = await getdb('vars/channel');
     const Banned = await isBanned(userId.toString());
-    const Fsub = isSub(userId);
+    const Fsub = await isSub(userId);
     const masterChatId = await KV.get("masterChatId");
 
     if (!Banned) {
