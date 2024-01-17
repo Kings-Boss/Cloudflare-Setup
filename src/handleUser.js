@@ -33,14 +33,16 @@ export async function handleUser(update) {
                 }
         } else {
             const inline = buildButtons(
-                [{
-                    text: "Join Channel",
-                    url: `https://t.me/${channel}`
-                }],
-                [{
+                [
+                    {
+                        text: "Join Channel",
+                        url: `https://t.me/${channel}`,
+                    },
+                ],
+                {
                     text: "Check ✅",
                     callback_data: `check_${userId}`,
-                }]
+                }
             );
             await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*", "Markdown", inline);
         }

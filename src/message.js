@@ -118,7 +118,7 @@ export function buildInlineKeyboard(buttonText, callbackData, urlButtons) {
 export function buildButtons(Buttons) {
   const inlineKeyboard = [
     [
-      ...Buttons,  // Include additional URL buttons
+      Buttons,
     ],
   ];
 
