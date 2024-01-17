@@ -32,17 +32,8 @@ export async function handleUser(update) {
                     await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
                 }
         } else {
-            const inline = buildInlineKeyboard(
-                "Check ✅",
-                `check_${userId}`,
-                [
-                    {
-                        text: "Join Channel",
-                        url: `https://t.me/${channel}`,
-                    },
-                ]
-                );
-            await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*", "Markdown", inline);
+            
+            await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*");
         }
 
     } else {
