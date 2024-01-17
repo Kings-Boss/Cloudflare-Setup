@@ -11,11 +11,13 @@ export async function handleUser(update) {
     const messageId = update.message.message_id;
     const channel = await getdb('vars/channel');
     const Banned = await isBanned(userId.toString());
-    const Fsub = await isSub(userId);
+    const data = `https://api.telegram.org/bot${telegramAuthToken}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
+    const response = await fetch(data);
+    const datajson = await response.json();
     const masterChatId = await KV.get("masterChatId");
 
     if (!Banned) {
-        if (Fsub) {
+        if (datajson.result.status === 'left' || datajson.result.status === 'kicked') {
             if (userText === "/start") {
                 await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
                 } else {
@@ -31,10 +33,9 @@ export async function handleUser(update) {
                         );                  
                     await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
                 }
-        } else {
-            
+          } else {
             await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*");
-        }
+          }
 
     } else {
         await deleteMessage(chatId, messageId);
