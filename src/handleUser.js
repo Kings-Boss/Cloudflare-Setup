@@ -17,14 +17,10 @@ export async function handleUser(update) {
 
     if (!Banned) {
         if (datajson.result.status === 'left' || datajson.result.status === 'kicked') {
-            await sendMessage(userId, "FIRSTLY JOIN THE CHANNEL");
-          } else {
-            if (userText === "/start") {
-                await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
-                } else {
-                    await sendToMaster();
-                }
-          }
+            await sendMessage(chatId, "FIRSTLY JOIN THE CHANNEL");
+        } else {
+            await sendMessage(chatId, "Already Joined");
+        }
     } else {
         await deleteMessage(chatId, messageId);
     }
