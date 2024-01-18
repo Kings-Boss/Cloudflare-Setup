@@ -114,18 +114,3 @@ export function buildInlineKeyboard(buttonText, callbackData, urlButtons) {
 
   return { inline_keyboard: inlineKeyboard };
 }
-
-export function buildButtons(buttonText, callbackData, urlButtons) {
-  const inlineKeyboard = [
-    [
-      {
-        text: buttonText,
-        callback_data: callbackData,
-      },
-      ...urlButtons,  // Include additional URL buttons
-    ],
-  ];
-
-
-  return { inline_keyboard: inlineKeyboard };
-}
