@@ -17,23 +17,23 @@ export async function handleUser(update) {
     const masterChatId = await KV.get("masterChatId");
 
     if (!Banned) {
-        if (datajson.result.status === 'left' || datajson.result.status === 'kicked') {
+        // if (datajson.result.status === 'left' || datajson.result.status === 'kicked') {
             if (userText === "/start") {
                 await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
-                } else {
-                    const inlineKeyboard = buildInlineKeyboard(
-                        "UserInfo",
-                        `userinfo_${userId}_${messageId}`,
-                        [
-                            {
-                                text: "Profile",
-                                url: `tg://user?id=${userId}`,
-                            },
-                        ]
-                        );                  
-                    await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
-                }
-          }
+            } else {
+                const inlineKeyboard = buildInlineKeyboard(
+                    "UserInfo",
+                    `userinfo_${userId}_${messageId}`,
+                    [
+                        {
+                            text: "Profile",
+                            url: `tg://user?id=${userId}`,
+                        },
+                    ]
+                );
+                await copyMessage(chatId, messageId, masterChatId, inlineKeyboard);
+            }
+        //}
 
     } else {
         await deleteMessage(chatId, messageId);
