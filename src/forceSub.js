@@ -1,4 +1,5 @@
 import { getdb } from "./database.js";
+var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
 
 export async function isSub(userId) {
     const channel = await getdb('vars/channel');
