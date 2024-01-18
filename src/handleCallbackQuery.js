@@ -27,7 +27,7 @@ export async function handleCallbackQuery(update) {
         const popupText = `YOU HAVEN'T JOINED \nDON'T TRY TO BE OVERSMART 😑`;
         await answerCallbackQuery(update.callback_query.id, popupText);
       } else {
-        const Text = `*THANKS FOR JOINING THE CHANNEL 😊* \n*NOW YOU CAN FEEL FREE TO USE ME*`;
+        const Text = `*THANKS FOR JOINING THE CHANNEL* 😊\n*NOW YOU CAN FEEL FREE TO USE ME*`;
         await deleteMessage(parts[1], update.callback_query.message.message_id);
         await sendMessage(parts[1], Text);
       }
