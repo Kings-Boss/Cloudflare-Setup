@@ -1,6 +1,6 @@
 
 import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message";
-import { getdb } from "./database";
+import { isSub } from "./forceSub";
 import { isBanned } from "./banCmds";
 
 export async function handleUser(update) {
@@ -10,21 +10,13 @@ export async function handleUser(update) {
     const userText = update.message.text;
     const messageId = update.message.message_id;
     const Banned = await isBanned(userId.toString());
-    const masterChatId = await KV.get("masterChatId");
-    const token = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
-    const channel = 'MDistinct';
-    const data = `https://api.telegram.org/bot${token}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
-    const response = await fetch(data);
-    const datajson = await response.json();
-    const valueJSON = JSON.stringify(datajson);
-    await sendMessage(chatId , valueJSON, "HTML");
-    const Fsub = (datajson.result.status === 'left' || datajson.result.status === 'kicked');
+    const notSub = await isSub(userId);
 
     if (!Banned) {
-        if (Fsub) {
+        if (notSub) {
             await sendMessage(chatId, "FIRSTLY JOIN THE CHANNEL");
         } else {
-            await sendMessage(chatId, "Already Joined");
+            await sendToMaster();
         }
     } else {
         await deleteMessage(chatId, messageId);
