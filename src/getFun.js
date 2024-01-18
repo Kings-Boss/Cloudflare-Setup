@@ -1,5 +1,5 @@
 
-import { getdb } from "./database";
+import { getdb } from "./database.js";
 
 export async function getKV(keyname) {
     const valueString = await KV.get(keyname);

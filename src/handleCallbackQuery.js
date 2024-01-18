@@ -1,6 +1,6 @@
 
-import { editMessageText, deleteMessage, answerCallbackQuery } from "./message";
-import { Unbanlist } from "./banCmds";
+import { editMessageText, deleteMessage, answerCallbackQuery } from "./message.js";
+import { Unbanlist } from "./banCmds.js";
 var masterChatId;
 
 export async function handleCallbackQuery(update) {

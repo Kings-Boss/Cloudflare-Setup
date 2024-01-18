@@ -1,7 +1,7 @@
 
-import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message";
-import { isSub } from "./forceSub";
-import { isBanned } from "./banCmds";
+import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message.js";
+import { isSub } from "./forceSub.js";
+import { isBanned } from "./banCmds.js";
 
 export async function handleUser(update) {
 

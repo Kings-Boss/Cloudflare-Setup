@@ -1,7 +1,7 @@
 
 
-import { sendMessage } from "./message";
-import { BanUser, UnbanUser } from "./banCmds";
+import { sendMessage } from "./message.js";
+import { BanUser, UnbanUser } from "./banCmds.js";
 import { getIdFromMsg } from "./getFun.js";
 
 export async function masterCommands(update) {

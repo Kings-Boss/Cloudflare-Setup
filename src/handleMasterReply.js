@@ -1,6 +1,6 @@
 
-import { sendMessage, copyMessage, replyMessage, buildInlineKeyboard, deleteMessage } from "./message";
-import { BanUser, UnbanUser } from "./banCmds";
+import { sendMessage, copyMessage, replyMessage, buildInlineKeyboard, deleteMessage } from "./message.js";
+import { BanUser, UnbanUser } from "./banCmds.js";
 import { getUserId, getIdFromMsg, getUserInfo } from "./getFun.js";
 var masterChatId;
 

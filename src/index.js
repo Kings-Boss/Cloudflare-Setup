@@ -1,6 +1,6 @@
 
-import { handleUser } from "./handleUser";
-import { masterCommands } from "./masterCommands";
+import { handleUser } from "./handleUser.js";
+import { masterCommands } from "./masterCommands.js";
 import { handleCallbackQuery } from "./handleCallbackQuery.js";
 import { handleMasterReply } from "./handleMasterReply.js";
 import { getKV } from "./getFun.js";

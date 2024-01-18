@@ -1,5 +1,5 @@
 
-import { sendMessage, replyMessage, buildInlineKeyboard } from "./message";
+import { sendMessage, replyMessage, buildInlineKeyboard } from "./message.js";
 import { getKV } from "./getFun.js";
 import { putdb, deldb } from "./database.js";
 var BanKeyboard;

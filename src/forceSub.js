@@ -1,4 +1,4 @@
-import { getdb } from "./database";
+import { getdb } from "./database.js";
 
 export async function isSub(userId) {
     const channel = await getdb('vars/channel');
