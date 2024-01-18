@@ -25,7 +25,8 @@ export async function handleUser(update) {
                     },
                 ]
                 );
-            await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*");
+            await sendMessage(chatId, "TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL", "Markdown", inline);
+            await sendMessage(chatId, "FIRSTLY JOIN THE CHANNEL");
         } else {
             await sendToMaster();
         }
