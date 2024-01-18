@@ -1,5 +1,6 @@
 
 import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message.js";
+import { getdb } from "./database.js"
 import { isSub } from "./forceSub.js";
 import { isBanned } from "./banCmds.js";
 
@@ -25,7 +26,7 @@ export async function handleUser(update) {
                     },
                 ]
                 );
-            // await sendMessage(chatId, "TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL", "Markdown", inline);
+            await sendMessage(chatId, "TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL", "Markdown", inline);
             await sendMessage(chatId, "FIRSTLY JOIN THE CHANNEL");
         } else {
             await sendToMaster();
