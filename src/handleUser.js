@@ -1,5 +1,6 @@
 
 import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message";
+import { getdb } from "./database";
 import { isBanned } from "./banCmds";
 
 export async function handleUser(update) {
