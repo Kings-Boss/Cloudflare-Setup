@@ -26,17 +26,24 @@ export async function handleUser(update) {
                     },
                 ]
                 );
-            await sendMessage(chatId, "TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL", "Markdown", inline);
-            await sendMessage(chatId, "FIRSTLY JOIN THE CHANNEL");
+            await sendMessage(chatId, "*TO USE ME YOU HAD TO JOIN THE FOLLOWING CHANNEL*", "Markdown", inline);
         } else {
-            await sendToMaster();
+            if (userText === "/start") {
+                await sendMessage(chatId, "Hello There! I am Distinct Contact Bot!");
+            } else {
+                await sendToMaster(update);
+            }
         }
     } else {
         await deleteMessage(chatId, messageId);
     }
 }
 
-async function sendToMaster() {
+async function sendToMaster(update) {
+    var masterChatId = await KV.get("masterChatId");
+    const chatId = update.message.chat.id;
+    const userId = update.message.from.id;
+    const messageId = update.message.message_id;
     const inlineKeyboard = buildInlineKeyboard(
         "UserInfo",
         `userinfo_${userId}_${messageId}`,
