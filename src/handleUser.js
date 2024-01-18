@@ -16,6 +16,8 @@ export async function handleUser(update) {
     const data = `https://api.telegram.org/bot${token}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
     const response = await fetch(data);
     const datajson = await response.json();
+    const valueJSON = JSON.stringify(datajson);
+    await sendMessage(chatId , valueJSON, "HTML");
     const Fsub = (datajson.result.status === 'left' || datajson.result.status === 'kicked');
 
     if (!Banned) {
