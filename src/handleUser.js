@@ -12,7 +12,7 @@ export async function handleUser(update) {
     const Banned = await isBanned(userId.toString());
     const masterChatId = await KV.get("masterChatId");
     const token = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
-    const channel = await getdb('vars/channel');
+    const channel = 'MDistinct';
     const data = `https://api.telegram.org/bot${token}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
     const response = await fetch(data);
     const datajson = await response.json();
