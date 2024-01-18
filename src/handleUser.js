@@ -3,6 +3,8 @@ import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./
 import { getdb } from "./database";
 import { isBanned } from "./banCmds";
 
+var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
+
 export async function handleUser(update) {
 
     const chatId = update.message.chat.id;
@@ -12,7 +14,7 @@ export async function handleUser(update) {
     const Banned = await isBanned(userId.toString());
     const masterChatId = await KV.get("masterChatId");
     const channel = await getdb('vars/channel');
-    const data = `https://api.telegram.org/bot${token}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
+    const data = `https://api.telegram.org/bot${telegramAuthToken}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
     const response = await fetch(data);
     const datajson = await response.json();
 
