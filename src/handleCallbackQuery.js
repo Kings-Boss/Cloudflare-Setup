@@ -1,5 +1,5 @@
 
-import { editMessageText, deleteMessage, answerCallbackQuery } from "./message.js";
+import { sendMessage, editMessageText, deleteMessage, answerCallbackQuery } from "./message.js";
 import { isSub } from "./forceSub.js";
 import { Unbanlist } from "./banCmds.js";
 var masterChatId;
@@ -28,7 +28,7 @@ export async function handleCallbackQuery(update) {
         await answerCallbackQuery(update.callback_query.id, popupText);
       } else {
         await deleteMessage(parts[1], update.callback_query.message.message_id);
-        const Text = `THANKS FOR JOINING THE CHANNEL 😊\nNOW YOU CAN FEEL FREE TO USE ME`;
+        const Text = `*THANKS FOR JOINING THE CHANNEL* 😊\n*NOW YOU CAN FEEL FREE TO USE ME*`;
         await sendMessage(parts[1], Text);
       }
     }
