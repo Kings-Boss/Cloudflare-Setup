@@ -9,7 +9,7 @@ export async function handleUser(update) {
     const userId = update.message.from.id;
     const userText = update.message.text;
     const messageId = update.message.message_id;
-    const channel = await getdb('vars/channel');
+    const channel = 'MDistinct';
     const Banned = await isBanned(userId.toString());
     const data = `https://api.telegram.org/bot${telegramAuthToken}/getChatMember?chat_id=@${channel}&user_id=${userId}`;
     const response = await fetch(data);
