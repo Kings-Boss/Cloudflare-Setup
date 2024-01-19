@@ -6,7 +6,7 @@ import { handleMasterReply } from "./handleMasterReply.js";
 import { getKV } from "./getFun.js";
 import { putdb } from "./database.js";
 
-const telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
+var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
 var webhookEndpoint = "/endpoint";
 
 addEventListener("fetch", (event) => {
