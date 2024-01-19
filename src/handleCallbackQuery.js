@@ -1,6 +1,6 @@
 
 import { sendMessage, editMessageText, deleteMessage, answerCallbackQuery } from "./message.js";
-import { isSub } from "./forceSub.js";
+import { checkSub } from "./forceSub.js";
 import { Unbanlist } from "./banCmds.js";
 var masterChatId;
 
@@ -22,9 +22,9 @@ export async function handleCallbackQuery(update) {
       await editMessageText(masterChatId, update.callback_query.message.message_id , `[THIS USER](tg://user?id=${parts[1]}) *IS #UNBANNED NOW*`)
 
     }  else if (parts[0] === "check") {
-      const notSub = await isSub(parts[1]);
-      if (notSub) {
-        const popupText = `YOU HAVEN'T JOINED \nDON'T TRY TO BE OVERSMART 😑`;
+      const isSub = await checkSub(parts[1]);
+      if (!isSub) {
+        const popupText = `YOU HAVEN'T JOINED 😑`;
         await answerCallbackQuery(update.callback_query.id, popupText);
       } else {
         await deleteMessage(parts[1], update.callback_query.message.message_id);

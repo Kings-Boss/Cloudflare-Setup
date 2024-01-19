@@ -1,5 +1,4 @@
 
-var telegramAuthToken = "1861934584:AAFoRVzflmY9dTRkMZT8E4e9FJN0apqgbyw";
 var masterChatId;
 
 export async function sendMessage(to_chatId, text, parsemode = "Markdown", replyMarkup) {

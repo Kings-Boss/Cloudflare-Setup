@@ -1,7 +1,7 @@
 
 import { sendMessage, copyMessage, deleteMessage, buildInlineKeyboard } from "./message.js";
 import { getdb } from "./database.js"
-import { isSub } from "./forceSub.js";
+import { checkSub } from "./forceSub.js";
 import { isBanned } from "./banCmds.js";
 
 export async function handleUser(update) {
@@ -12,10 +12,10 @@ export async function handleUser(update) {
     const messageId = update.message.message_id;
     const channel = await getdb('vars/channel');
     const Banned = await isBanned(userId.toString());
-    const notSub = await isSub(userId);
+    const isSub = await checkSub(userId);
 
     if (!Banned) {
-        if (notSub) {
+        if (!isSub) {
             const inline = buildInlineKeyboard(
                 "Check ✅",
                 `check_${userId}`,
